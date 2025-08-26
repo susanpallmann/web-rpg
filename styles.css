@@ -13,8 +13,8 @@ body {
   background-color: #314b58;
 }
 #map {
-  height:100%;
-  padding-right: 178%;
+  width: 80%;
+  padding-bottom: 56.25%;
   background-image: url(images/map.png);
   background-size: contain;
 }
