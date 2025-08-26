@@ -4,6 +4,10 @@ body {
   box-sizing: border-box;
   font-family: sans-serif;
 }
+h1 {
+  font-family: 'Uncial Antiqua', serif;
+  font-size: 20px;
+}
 .view {
   height: 100%;
   width: 100%;
