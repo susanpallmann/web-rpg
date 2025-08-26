@@ -59,4 +59,8 @@ $(document).ready(function() {
   let newGame = new Game('menu');
   newGame.changeView('map');
   generateMapMarkers();
+
+  $('.map-marker').click(async function() {
+    console.log('map marker clicked!');
+  });
 });
