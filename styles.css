@@ -29,6 +29,8 @@ body {
   border-radius: 18px;
   cursor: pointer;
   transition: all 0.15s;
+  border: 2px solid #160B07;
+  background-size: cover;
 }
 .map-marker:hover, .map-marker:focus, .map-marker:active {
   box-sizing: border-box;
@@ -41,4 +43,6 @@ body {
   border-radius: 18px;
   cursor: pointer;
   transition: all 0.15s;
+  border: 2px solid #160B07;
+  background-size: cover;
 }
