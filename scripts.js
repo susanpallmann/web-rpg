@@ -44,7 +44,8 @@ class Game {
   changeView(newView) {
     let $previousView = $(`#view-${this.view}`);
     let $newView = $(`#view-${newView}`);
-    $previousView.fadeToggle(1000, $newView.fadeToggle(1000));
+    $previousView.fadeToggle(1000);
+    $newView.delay(1000).fadeToggle(1000);
     this.view = newView;
   }
 }
