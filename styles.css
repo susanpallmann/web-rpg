@@ -13,8 +13,8 @@ body {
   background-color: #314b58;
 }
 #map {
-  height:45vw;
-  width: 80vw;
+  height:100%;
+  padding-right: 178%;
   background-image: url(images/map.png);
 }
 .map-marker {
