@@ -62,5 +62,6 @@ $(document).ready(function() {
 
   $('.map-marker').click(async function() {
     console.log('map marker clicked!');
+    newGame.changeView('level');
   });
 });
