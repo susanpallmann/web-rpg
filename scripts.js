@@ -16,6 +16,7 @@ function generateMapMarkers() {
   let $map = $('#map');
   Object.values(config.mapMarkers).forEach(value => {
     let $newMarker = $(`<div class="map-marker" style="top:${value[1]}%; left:${value[0]}%;">`);
+    $map.empty();
     $map.append($newMarker);
   });
 }
