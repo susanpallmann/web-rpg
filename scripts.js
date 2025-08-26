@@ -13,7 +13,7 @@ const config = {
 function generateMapMarkers() {
   let $map = $('#map');
   Object.values(config.mapMarkers).forEach(value => {
-    let $newMarker = $(`<div class="map-marker" style="top:${value[1]}px; left:${value[0]}px;">`);
+    let $newMarker = $(`<div class="map-marker" style="top:${value[1]}%; left:${value[0]}%;">`);
     $map.append($newMarker);
   });
 }
