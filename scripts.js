@@ -14,8 +14,8 @@ function generateMapMarkers() {
   let $map = $('#map');
   for (let listing in config.mapMarkers) {
     let $newMarker = $(`<div class="map-marker" style="top:${listing[1]}px; left:${listing[0]}px;">`);
+    $map.append($newMarker);
   }
-  $map.append($newMarker);
 }
 
 class Game {
