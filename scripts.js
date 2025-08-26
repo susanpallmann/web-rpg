@@ -6,7 +6,7 @@
 // switch view to battle view
 
 class Game {
-  constructor() {
+  constructor(view) {
     // Player attributes, like level, items, health, stats, etc.
     this.playerLevel;
     this.playerEquipment;
@@ -21,12 +21,20 @@ class Game {
     this.region;
     this.levelPhase;
     // UI attributes, like view, etc.
-    this.view;
+    this.view = view;
+  }
+
+  changeView(newView) {
+    let $previousView = $(`#view-${this.view}`);
+    let $newView = $(`#view-${newView}`);
+    $previousView.fadeToggle(1000, $newView.fadeToggle(1000));
+    this.view = newView;
   }
 }
 
 $(document).ready(function() {
-  let newGame = new Game();
-  newGame.view = 'test';
-  console.log(newGame.view);
+  $('#view-level').fadeOut();
+  $('#view-map').fadeOut();
+  let newGame = new Game('menu');
+  newGame.changeView('map');
 });
