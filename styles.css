@@ -9,6 +9,9 @@ body {
   width: 100vw;
   position: absolute;
 }
+#view-map {
+  background-color: #314b58;
+}
 .map-marker {
   box-sizing: border-box;
   position: absolute;
