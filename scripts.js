@@ -9,7 +9,9 @@ class Game {
   constructor() {
     // Player attributes, like level, items, health, stats, etc.
     this.playerLevel;
+    this.playerEquipment;
     this.playerItems;
+    this.stats = [];
     // Game attributes, like region, level phase, etc.
     this.region;
     this.levelPhase;
