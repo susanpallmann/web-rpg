@@ -50,3 +50,11 @@ body {
   border: 2px solid #160B07;
   background-size: cover;
 }
+.title-plate-medium {
+  width: 209px;
+  height: 39px;
+  background-image: url(images/title-plate-medium.png);
+  background-size: cover;
+  border: 2px solid #160B07;
+  border-radius: 4px;
+}
