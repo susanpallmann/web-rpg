@@ -12,6 +12,12 @@ const config = {
   }
 };
 
+function generateMapMarkers() {
+  for (location in config.mapMarkers) {
+    console.log(location);
+  }
+}
+
 class Game {
   constructor(view) {
     // Player attributes, like level, items, health, stats, etc.
@@ -48,4 +54,5 @@ $(document).ready(function() {
   $('#view-map').fadeOut();
   let newGame = new Game('menu');
   newGame.changeView('map');
+  generateMapMarkers();
 });
