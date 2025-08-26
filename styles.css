@@ -17,6 +17,7 @@ body {
   padding-bottom: 45%;
   background-image: url(images/map.png);
   background-size: contain;
+  margin: auto;
   left: 0;
   right: 0;
   position: absolute;
