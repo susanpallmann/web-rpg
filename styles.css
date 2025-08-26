@@ -15,6 +15,7 @@ body {
 #map {
   height:45vw;
   width: 80vw;
+  background-image: url(images/map.png);
 }
 .map-marker {
   box-sizing: border-box;
