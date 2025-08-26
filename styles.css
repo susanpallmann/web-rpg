@@ -14,7 +14,7 @@ body {
 }
 #map {
   width: 80%;
-  padding-bottom: 56.25%;
+  padding-bottom: 45%;
   background-image: url(images/map.png);
   background-size: contain;
 }
