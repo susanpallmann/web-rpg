@@ -14,20 +14,20 @@ body {
   position: absolute;
   width: 36px;
   height: 36px;
-  background: linear-gradient(147.63deg, #FFA750 13.19%, #B86326 89.33%);
-  border: 3px solid #DBCFA5;
-  border-radius: 18px;
+  background-color: red;
+  background-image: url(images/map-pin.png);
   box-shadow: 0px 2px 8.3px rgba(0, 0, 0, 0.4);
   cursor: pointer;
   transition: all 0.25s;
 }
 .map-marker:hover, .map-marker:focus, .map-marker:active {
-  box-sizing: border-box; 
+  box-sizing: border-box;
   position: absolute;
   width: 36px;
   height: 36px;
-  background: linear-gradient(147.63deg, #9CFF50 13.19%, #4DB826 89.33%);
-  border: 3px solid #FFFFFF;
-  border-radius: 18px;
+  background-color: red;
+  background-image: url(images/map-pin.png);
   box-shadow: 0px 2px 8.3px rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  transition: all 0.25s;
 }
