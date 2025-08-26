@@ -11,7 +11,12 @@ class Game {
     this.playerLevel;
     this.playerEquipment;
     this.playerItems;
+    
+    // Attack power
+    // Health
+    // Armor/defense
     this.stats = [];
+    
     // Game attributes, like region, level phase, etc.
     this.region;
     this.levelPhase;
