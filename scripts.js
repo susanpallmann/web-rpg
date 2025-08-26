@@ -6,15 +6,14 @@
 // switch view to battle view
 const config = {
   mapMarkers: {
-    location1: [1, 2],
-    location2: [4, 6],
-    location3: [3, 8],
+    location1: [85, 50]
   }
 };
 
 function generateMapMarkers() {
+  let $map = $('#map');
   for (let listing in config.mapMarkers) {
-    console.log(listing);
+    let $newMarker = $(`<div class="map-marker" style="top:${listing[1]}px; left:${listing[0]}px;">`);
   }
 }
 
