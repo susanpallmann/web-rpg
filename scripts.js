@@ -13,7 +13,7 @@ const config = {
 };
 
 function generateMapMarkers() {
-  for (listing in config.mapMarkers) {
+  for (let listing in config.mapMarkers) {
     console.log(listing);
   }
 }
