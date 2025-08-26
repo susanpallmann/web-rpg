@@ -15,7 +15,11 @@ class Game {
     // Attack power
     // Health
     // Armor/defense
-    this.stats = [];
+    this.stats = {
+      attackPower: 0,
+      health: 0,
+      defense: 0
+    };
     
     // Game attributes, like region, level phase, etc.
     this.region;
