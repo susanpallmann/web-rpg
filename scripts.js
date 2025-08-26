@@ -4,6 +4,13 @@
 // change the selected region to the region corresponding to that id
 // animate movement to that region
 // switch view to battle view
+const config = {
+  mapMarkers: {
+    location1: [1, 2],
+    location2: [4, 6],
+    location3: [3, 8],
+  }
+};
 
 class Game {
   constructor(view) {
