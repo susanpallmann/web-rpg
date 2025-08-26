@@ -18,6 +18,7 @@ body {
   background-image: url(images/map.png);
   background-size: contain;
   margin: auto;
+  position: absolute;
 }
 .map-marker {
   box-sizing: border-box;
