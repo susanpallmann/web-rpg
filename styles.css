@@ -16,6 +16,7 @@ body {
   height:100%;
   padding-right: 178%;
   background-image: url(images/map.png);
+  background-size: contain;
 }
 .map-marker {
   box-sizing: border-box;
