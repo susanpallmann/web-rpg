@@ -6,7 +6,9 @@
 // switch view to battle view
 const config = {
   mapMarkers: {
-    location1: [85, 50]
+    location1: [80.5, 50],
+    location2: [78.5, 60],
+    location3: [73.5, 70]
   }
 };
 
