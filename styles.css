@@ -78,7 +78,7 @@ h1 {
 .button {
   height: 44px;
   width: 168px;
-  background-image: url(images/button1.svg);
+  background-image: url(images/button-1.svg);
   background-size: cover;
 }
 .button p {
