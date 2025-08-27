@@ -80,19 +80,43 @@ h1 {
   width: 168px;
   // background-image: url(images/button-1.svg);
   // background-size: cover;
-  background-color: #ef5c3a;
-  box-shadow:       4px   0   0 0   #402C2C,
-                   -4px   0   0 0   #402C2C,
-                    0     4px 0 0   #402C2C,
-                    0    -4px 0 0   #402C2C,
-                   -8px  -4px 0 4px rgba(64, 44, 44, 33%),
-                    0   -16px 0 0   rgba(64, 44, 44, 33%),
-             inset  0     4px 0 0   rgba(231, 213, 179, 15%),
-             inset  0    -4px 0 0   rgba(64, 44, 44, 33%);
+  background-color: #CF573C;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 24px 8px;
+  box-shadow: 
+    -4px 4px 0px rgba(64, 44, 44, 0.33), 
+    4px 4px 0px rgba(64, 44, 44, 0.33), 
+    0px 8px 0px rgba(48, 33, 33, 0.33), 
+    -4px 0px 0px #402C2C, 
+    0px -4px 0px #402C2C, 
+    4px 0px 0px #402C2C, 
+    0px 4px 0px #402C2C, 
+    inset 0px -4px 0px rgba(64, 44, 44, 0.33), 
+    inset 0px 4px 0px rgba(231, 213, 179, 0.15);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.button:hover, .button:active, .button:focus {
+  background-color: #B53E23;
+  margin-top: 4px;
+  box-shadow: 
+    -4px 0px 0px #402C2C, 
+    0px -4px 0px #402C2C, 
+    4px 0px 0px #402C2C, 
+    0px 4px 0px #402C2C, 
+    inset 0px -4px 0px rgba(64, 44, 44, 0.33), 
+    inset 0px 4px 0px rgba(231, 213, 179, 0.15);
 }
 .button p {
   font-size: 26px;
   text-align: center;
   color: #E7D5B3;
-  text-shadow: 0px 2px 0px rgba(64, 44, 44, 0.25);
+  text-shadow: 0px 2px 0px rgba(64, 44, 44, 25%);
+  transition: all 0.15s;
+}
+.button:hover p, .button:active p, .button:focus p {
+  text-shadow: 0px 2px 0px rgba(64, 44, 44, 50%);
 }
