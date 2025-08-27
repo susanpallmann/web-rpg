@@ -57,7 +57,7 @@ $(document).ready(function() {
   $('#view-level').fadeOut();
   $('#view-map').fadeOut();
   let newGame = new Game('menu');
-  newGame.changeView('map');
+  newGame.changeView('menu');
   generateMapMarkers();
 
   $('.map-marker').click(async function() {
