@@ -1,3 +1,12 @@
+:root .red {
+  --color-medium: #F35D49;
+  --color-dark-medium: #E0402B;
+}
+:root .green {
+  --color-medium: #30A15B;
+  --color-dark-medium: #08973F;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -80,7 +89,7 @@ h1 {
   width: 168px;
   // background-image: url(images/button-1.svg);
   // background-size: cover;
-  background-color: #CF573C;
+  background-color: var(--color-medium);
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -90,10 +99,10 @@ h1 {
     -4px 4px 0px rgba(64, 44, 44, 0.33), 
     4px 4px 0px rgba(64, 44, 44, 0.33), 
     0px 8px 0px rgba(48, 33, 33, 0.33), 
-    -4px 0px 0px #402C2C, 
-    0px -4px 0px #402C2C, 
-    4px 0px 0px #402C2C, 
-    0px 4px 0px #402C2C, 
+    -4px 0px 0px var(--color-dark-medium),
+    0px -4px 0px var(--color-dark-medium),
+    4px 0px 0px var(--color-dark-medium),
+    0px 4px 0px var(--color-dark-medium),
     inset 0px -4px 0px rgba(64, 44, 44, 0.33), 
     inset 0px 4px 0px rgba(231, 213, 179, 0.15);
   cursor: pointer;
