@@ -85,10 +85,10 @@ h1 {
                    -4px   0   0 0   #402C2C,
                     0     4px 0 0   #402C2C,
                     0    -4px 0 0   #402C2C,
-                   -8px  -4px 0 4px rgba(64, 44, 44, 33),
-                   -16px  0   0 0   rgba(64, 44, 44, 33),
-             inset  4px   0   0 0   rgba(231, 213, 179, 15),
-             inset -4px   0   0 0   rgba(64, 44, 44, 33);
+                   -8px  -4px 0 4px rgba(64, 44, 44, 33%),
+                    0   -16px 0 0   rgba(64, 44, 44, 33%),
+             inset  0     4px 0 0   rgba(231, 213, 179, 15%),
+             inset  0    -4px 0 0   rgba(64, 44, 44, 33%);
 }
 .button p {
   font-size: 26px;
