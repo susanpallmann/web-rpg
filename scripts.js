@@ -52,7 +52,7 @@ class Game {
     this.view = newView;
   }
 }
-
+// please publish
 $(document).ready(function() {
   $('#view-level').fadeOut();
   $('#view-map').fadeOut();
