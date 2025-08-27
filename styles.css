@@ -75,3 +75,26 @@ h1 {
   padding: 0;
   text-align: center;
 }
+.button::before {
+  content: '';
+  display:inline-block;
+  width:108px;
+  height: 2px;
+  background-image: url(images/button1-before.svg);
+  background-size: cover;
+}
+.button {
+  height: 23px;
+  width:108px;
+  background-image: url(images/button1-main.svg);
+  background-size: cover;
+  background-color: #CF573C;
+}
+.button::after {
+  content: '';
+  display:inline-block;
+  width:108px;
+  height: 4px;
+  background-image: url(images/button1-after.svg);
+  background-size: cover;
+}
