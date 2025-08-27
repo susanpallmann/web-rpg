@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: 'Jersey 10', sans-serif;
   color: #160B07;
 }
 h1 {
@@ -80,4 +80,10 @@ h1 {
   width: 168px;
   background-image: url(images/button1.svg);
   background-size: cover;
+}
+.button p {
+  font-size: 24px;
+  text-align: center;
+  color: #E7D5B3;
+  text-shadow: 0px 2px 0px rgba(64, 44, 44, 0.25);
 }
