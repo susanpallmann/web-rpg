@@ -78,8 +78,15 @@ h1 {
 .button {
   height: 44px;
   width: 168px;
-  background-image: url(images/button-1.svg);
-  background-size: cover;
+  // background-image: url(images/button-1.svg);
+  // background-size: cover;
+  background-color: #ef5c3a;
+  box-shadow:       4px  0   0 0 #402C2C,
+                   -4px  0   0 0 #402C2C,
+                    0    4px 0 0 #402C2C,
+                    0   -4px 0 0 #402C2C
+             inset  4px  0   0 0 rgba(231, 213, 179, 15),
+             inset -4px  0   0 0 rgba(64, 44, 44, 33);
 }
 .button p {
   font-size: 26px;
