@@ -19,7 +19,7 @@ class Player {
   constructor() {
     this.health = 25;
     this.defense = 1;
-    this.damage = 2;
+    this.damage = 3;
   }
 
   takeDamage(baseDamage) {
