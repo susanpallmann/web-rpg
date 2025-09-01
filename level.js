@@ -4,7 +4,7 @@ class Battle {
     this.maxTurns = maxTurns;
     this.turnFrequency = turnFrequency;
     this.battleTurnInterval;
-    startBattleInterval();
+    this.startBattleInterval();
   }
 
   startBattleInterval() {
