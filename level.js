@@ -1,8 +1,8 @@
 class Monster {
   constructor() {
-    this.health = 10;
-    this.defense = 1;
-    this.damage = 1;
+    this.health = 25;
+    this.defense = 2;
+    this.damage = 2;
   }
 
   takeDamage(baseDamage) {
@@ -18,7 +18,7 @@ class Player {
   constructor() {
     this.health = 25;
     this.defense = 3;
-    this.damage = 5;
+    this.damage = 2;
   }
 
   takeDamage(baseDamage) {
