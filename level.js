@@ -8,6 +8,7 @@ class Monster {
   takeDamage(baseDamage) {
     let finalDamage = baseDamage >= this.defense ? baseDamage - this.defense : 0;
     this.health = this.health - finalDamage;
+    return finalDamage;
   }
   
   dealDamage() {
@@ -25,6 +26,7 @@ class Player {
   takeDamage(baseDamage) {
     let finalDamage = baseDamage >= this.defense ? baseDamage - this.defense : 0;
     this.health = this.health - finalDamage;
+    return finalDamage;
   }
   
   dealDamage() {
@@ -58,11 +60,11 @@ class Battle {
         let playerDamageDealt = this.player.dealDamage();
         let monsterDamageDealt = this.monster.dealDamage();
 
-        console.log(`Player dealt ${playerDamageDealt} damage.`);
-        console.log(`Monster dealt ${monsterDamageDealt} damage.`);
+        let monsterDamageTaken = this.monster.takeDamage(playerDamageDealt);
+        let playerDamageTaken = this.player.takeDamage(monsterDamageDealt);
 
-        this.monster.takeDamage(playerDamageDealt);
-        this.player.takeDamage(monsterDamageDealt);
+        console.log(`Player dealt ${monsterDamageTaken} damage to monster.`);
+        console.log(`Monster dealt ${playerDamageTaken} damage to player.`);
 
         if (this.player.health <= 0) {
           
@@ -77,9 +79,6 @@ class Battle {
           console.log('Monster ran out of health; ending battle.');
           
         }
-        
-        console.log(`Player now has ${this.player.health} health.`);
-        console.log(`Monster now has ${this.monster.health} health.`);
         
       } else {
         
