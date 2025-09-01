@@ -12,10 +12,10 @@ class Battle {
 
       if (this.turnNumber < this.maxTurns) {
         this.turnNumber++;
-        console.log('Turn interval increased.);
+        console.log('Turn interval increased.');
       } else {
         this.endBattleInterval();
-        console.log('Turn interval finshed.);
+        console.log('Turn interval finshed.');
       }
       
     }, this.turnFrequency);
