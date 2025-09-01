@@ -6,7 +6,8 @@ class Monster {
   }
 
   takeDamage(baseDamage) {
-    this.health =  this.health - (baseDamage - this.defense);
+    let finalDamage = baseDamage >= this.defense ? baseDamage - this.defense : 0;
+    this.health = this.health - finalDamage;
   }
   
   dealDamage() {
@@ -22,7 +23,8 @@ class Player {
   }
 
   takeDamage(baseDamage) {
-    this.health =  this.health - (baseDamage - this.defense);
+    let finalDamage = baseDamage >= this.defense ? baseDamage - this.defense : 0;
+    this.health = this.health - finalDamage;
   }
   
   dealDamage() {
