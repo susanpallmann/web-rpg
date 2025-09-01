@@ -1,7 +1,7 @@
 class Monster {
   constructor() {
     this.health = 25;
-    this.defense = 2;
+    this.defense = 1;
     this.damage = 2;
   }
 
@@ -18,7 +18,7 @@ class Monster {
 class Player {
   constructor() {
     this.health = 25;
-    this.defense = 3;
+    this.defense = 1;
     this.damage = 2;
   }
 
