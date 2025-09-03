@@ -87,7 +87,7 @@ function assignRegionDifficulty() {
 
     // Loop through each stage
     let stagesProcessed = 0;
-    for (let stage in region.stages) {
+    for (let stage in regions[region].stages) {
 
       // Calculate the level for this stage
       let stageLevel = minLevel + (stagesProcessed*stageGap);
