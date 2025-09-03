@@ -1,4 +1,4 @@
-import {regions, leveling, battles} from 'setup.js';
+import {regions, leveling, battles} from '/setup.js';
 
 class Stage {
   constructor(stage) {
@@ -12,6 +12,10 @@ class Stage {
 
   createBattle() {
     // Determine if this is to be a boss battle
+    let isBossBattle = false;
+    if (this.hasBoss) {
+      isBossBattle = roll(battles.bossChance);
+    }
     // Determine the monster types
   }
 }
