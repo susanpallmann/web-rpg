@@ -20,17 +20,17 @@ const leveling = {
 const regions = {
   mycanidMeadows: {
     name: "Mycanid Meadows",
-    levelRange: [],
+    levelRange: [], // Dynamically populated by assignRegionDifficulty()
     stages: {
       portobelloPrairie: {
         name: "Portobello Prairie",
-        level: 0,
+        level: 0, // Dynamically populated by assignRegionDifficulty()
         monsters: ['mycanid'],
         bosses: []
       },
       chanterelleCountryside: {
         name: "Chanterelle Countryside",
-        level: 0,
+        level: 0, // Dynamically populated by assignRegionDifficulty()
         monsters: ['mycanid'],
         bosses: ['mushroomKing']
       }
@@ -38,17 +38,17 @@ const regions = {
   },
   fernForest: {
     name: "Fern Forest",
-    levelRange: [],
+    levelRange: [], // Dynamically populated by assignRegionDifficulty()
     stages: {
       plantPlateau: {
         name: "Plant Plateau",
-        level: 0,
+        level: 0, // Dynamically populated by assignRegionDifficulty()
         monsters: ['mycanid', 'spider'],
         bosses: []
       },
       pothosPeak: {
         name: "Pothos Peak",
-        level: 0,
+        level: 0, // Dynamically populated by assignRegionDifficulty()
         monsters: ['mycanid', 'spider'],
         bosses: ['queenSpider']
       }
