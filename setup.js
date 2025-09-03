@@ -1,4 +1,7 @@
-// please please work
+// Sets the game's level-based constants and modifiers, including:
+  // The game's maximum level
+  // Monsters and bosses' base stats
+  // How monsters and bosses' stats scale per level
 const leveling = {
   maxLevel: 100,
   monsterLeveling: {
@@ -18,19 +21,22 @@ const leveling = {
   }
 };
 
+// Sets the game's zone information, including:
+  // The game's regions and their attributes
+  // Each region's stages and their attributes
 const regions = {
   mycanidMeadows: {
     name: "Mycanid Meadows",
     stages: {
       portobelloPrairie: {
         name: "Portobello Prairie",
-        level: 0, // Dynamically populated by assignDifficulty()
+        level: 0, // Dynamically populated
         monsters: ['mycanid'],
         bosses: []
       },
       chanterelleCountryside: {
         name: "Chanterelle Countryside",
-        level: 0, // Dynamically populated by assignDifficulty()
+        level: 0, // Dynamically populated
         monsters: ['mycanid'],
         bosses: ['mushroomKing']
       }
@@ -41,13 +47,13 @@ const regions = {
     stages: {
       plantPlateau: {
         name: "Plant Plateau",
-        level: 0, // Dynamically populated by assignDifficulty()
+        level: 0, // Dynamically populated
         monsters: ['mycanid', 'spider'],
         bosses: []
       },
       pothosPeak: {
         name: "Pothos Peak",
-        level: 0, // Dynamically populated by assignDifficulty()
+        level: 0, // Dynamically populated
         monsters: ['mycanid', 'spider'],
         bosses: ['queenSpider']
       }
