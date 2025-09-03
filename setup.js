@@ -61,8 +61,48 @@ const regions = {
   }
 }
 
+const monsters = {
+  mycanid: {
+    name: "Mycanid",
+    appearance: 'mycanid',
+    relativeDifficulty: 1,
+    attack: ['basic'],
+    defense: ['basic']
+  },
+  spider: {
+    name: "Spider",
+    appearance: 'spider',
+    relativeDifficulty: 1,
+    attack: ['basic'],
+    defense: ['basic']
+  },
+  // Bosses
+  mushroomKing: {
+    name: "Mushroom King",
+    appearance: 'mushroomKing',
+    relativeDifficulty: 1,
+    attack: ['basic'],
+    defense: ['basic']
+  },
+  queenSpider: {
+    name: "Queen Spider",
+    appearance: 'queenSpider',
+    relativeDifficulty: 1,
+    attack: ['basic'],
+    defense: ['basic']
+  }
+};
+
+// Sets constants to control battle gameplay
+const battles = {
+  // Length of automatic turns during battles, in milliseconds
+  turnSpeed: 2000,
+  // Chance of generating a boss encounter in stages with bosses (should be less than 1)
+  bossChance: 0.05
+};
+
 // Function to assign levels ranges and levels to regions and stages based on the maxLevel constant
-function assignDifficulty() {
+function assignStageLevels() {
 
   // Get the total number of stages across all regions
   let numStages = 0;
@@ -92,5 +132,5 @@ function assignDifficulty() {
 }
 
 $(document).ready(function() {
-  assignDifficulty();
+  assignStageLevels();
 });
