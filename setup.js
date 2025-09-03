@@ -21,17 +21,16 @@ const leveling = {
 const regions = {
   mycanidMeadows: {
     name: "Mycanid Meadows",
-    levelRange: [], // Dynamically populated by assignRegionDifficulty()
     stages: {
       portobelloPrairie: {
         name: "Portobello Prairie",
-        level: 0, // Dynamically populated by assignRegionDifficulty()
+        level: 0, // Dynamically populated by assignDifficulty()
         monsters: ['mycanid'],
         bosses: []
       },
       chanterelleCountryside: {
         name: "Chanterelle Countryside",
-        level: 0, // Dynamically populated by assignRegionDifficulty()
+        level: 0, // Dynamically populated by assignDifficulty()
         monsters: ['mycanid'],
         bosses: ['mushroomKing']
       }
@@ -39,17 +38,16 @@ const regions = {
   },
   fernForest: {
     name: "Fern Forest",
-    levelRange: [], // Dynamically populated by assignRegionDifficulty()
     stages: {
       plantPlateau: {
         name: "Plant Plateau",
-        level: 0, // Dynamically populated by assignRegionDifficulty()
+        level: 0, // Dynamically populated by assignDifficulty()
         monsters: ['mycanid', 'spider'],
         bosses: []
       },
       pothosPeak: {
         name: "Pothos Peak",
-        level: 0, // Dynamically populated by assignRegionDifficulty()
+        level: 0, // Dynamically populated by assignDifficulty()
         monsters: ['mycanid', 'spider'],
         bosses: ['queenSpider']
       }
@@ -58,56 +56,35 @@ const regions = {
 }
 
 // Function to assign levels ranges and levels to regions and stages based on the maxLevel constant
-function assignRegionDifficulty() {
-  
-  // Get number of regions from regions constant
-  const numRegions = Object.keys(regions).length;
-  
-  // Determine the range for each region, rounded to an integer
-  // If the maxLevel is 100 and there are 3 regions, each region will have a range of ~33 levels
-  const regionRange = Math.round(leveling.maxLevel/numRegions);
+function assignDifficulty() {
 
-  // Loop through each region
-  let regionsProcessed = 0;
+  // Get the total number of stages across all regions
+  let numStages = 0;
   for (let region in regions) {
-    
-    // Calculate the minimum and maximum level for this region
-    let minLevel = 1 + (regionsProcessed*regionRange);
-    let maxLevel = regionsProcessed === numRegions-1 ? leveling.maxLevel : minLevel + regionRange - 1;
-    
-    // Assign this range to the region in the regions object
-    regions[region].levelRange = [minLevel, maxLevel];
-
-    // Get the number of stages in this region
-    const numStages = Object.keys(regions[region].stages).length;
-
-    // Determine the difference in difficulty between each level, rounded to an integer
-    // If the region's range was 33 and there are 3 stages, there will be approximately 17 levels between each stage
-    const stageGap = Math.round(regionRange/(numStages-1));
-
-    // Loop through each stage
-    let stagesProcessed = 0;
-    for (let stage in regions[region].stages) {
-
-      // Calculate the level for this stage
-      let stageLevel = minLevel + (stagesProcessed*stageGap);
-      if (stagesProcessed === numStages-1) {
-        stageLevel = maxLevel;
-      }
-
-      // Assign this range to the region in the regions object
-      console.log(regions[region].stages[stage].level);
-      console.log(stageLevel);
-      regions[region].stages[stage].level = stageLevel;
-      
-      stagesProcessed++;
-    }
-    regionsProcessed++;
+    numStages = numStages + Object.keys(regions[region].stages).length;
   }
 
+  // Determine the level difference between each stage, rounded to the nearest integer
+  // If the maxLevel is 100 and there are 20 stages, each stage will be ~5 levels apart
+  const levelDifference = Math.round(leveling.maxLevel/(numStages - 1));
+
+  // Loop through each region and each stage in that region
+  let stagesAssigned = 0;
+  for (let region in regions) {
+    for (let stage in regions[region].stages) {
+
+      // Calculate the level
+      // If this is the last stage to be assigned, the level should be set to the maxLevel from the leveling constant
+      let level = stagesAssigned === numStages - 1 ? leveling.maxLevel : (stagesAssigned*levelDifference) + 1;
+
+      // Assign this stage the calculated level
+      regions[region].stages[stage].level = level;
+      stagesAssigned++;
+    }
+  }
   console.log(regions);
 }
 
 $(document).ready(function() {
-  assignRegionDifficulty();
+  assignDifficulty();
 });
