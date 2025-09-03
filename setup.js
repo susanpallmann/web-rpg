@@ -78,7 +78,7 @@ function assignRegionDifficulty() {
     regions[region].levelRange = [minLevel, maxLevel];
 
     // Get the number of stages in this region
-    const numStages = Object.keys(region.stages).length;
+    const numStages = Object.keys(regions[region].stages).length;
 
     // Determine the difference in difficulty between each level, rounded to an integer
     // If the region's range was 33 and there are 3 stages, there will be approximately 17 levels between each stage
