@@ -95,7 +95,9 @@ function assignRegionDifficulty() {
       }
 
       // Assign this range to the region in the regions object
-      regions[region].stages[stage]['level'] = stageLevel;
+      console.log(regions[region].stages[stage].level);
+      console.log(stageLevel);
+      regions[region].stages[stage].level = stageLevel;
       
       stagesProcessed++;
     }
