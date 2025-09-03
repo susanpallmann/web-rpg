@@ -1,4 +1,4 @@
-import {regions, leveling, battles} from '/setup.js';
+import {regions, leveling, battles} from 'setup.js';
 
 class Stage {
   constructor(stage) {
