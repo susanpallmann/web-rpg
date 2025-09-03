@@ -53,6 +53,6 @@ function roll(num) {
 }
 
 $(document).ready(function() {
-  let battle = new Battle(regions.mycanidMeadows.stages.portobelloPrairie);
-  console.log(battle.hasBoss);
+  let stage = new Stage(regions.mycanidMeadows.stages.portobelloPrairie);
+  console.log(stage.hasBoss);
 });
