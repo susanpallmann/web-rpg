@@ -93,6 +93,18 @@ const monsters = {
   }
 };
 
+const items = {
+  item: {
+    name: "Item Name",
+    appearance: null,
+    slot: null, //head, torso, legs, feet
+    stat: null,
+    type: null,
+    amount: null,
+    trigger: null,
+  }
+};
+
 // Sets constants to control battle gameplay
 const battles = {
   // Length of automatic turns during battles, in milliseconds
