@@ -255,7 +255,11 @@ class Stage {
       monsterTypes.push(this.monsters[Math.floor(Math.random() * this.monsters.length)]);
     }
     this.currentBattle = new Battle(battleType, monsterTypes, this.level);
-    this.currentBattle.generateMonsters();
+    if (this.currentBattle.battleType === 'boss) {
+      this.currentBattle.generateBoss();
+    } else {
+      this.currentBattle.generateMonsters();
+    }
   }
 }
 
