@@ -312,6 +312,7 @@ class Battle {
     for (let i = 0; i < numMonsters; i++) {
       let monsterType = i === 1 ? this.monsterTypes[0] : this.monsterTypes[1];
       let attack = {};
+      console.log(monsterType);
       for (let j = 0; j < monsters[monsterType].attack.length; j++) {
         attack[monsters[monsterType].attack[j]] = baseAttack * monsters[monsterType].relativeDifficulty;
       }
