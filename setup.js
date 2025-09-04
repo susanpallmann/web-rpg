@@ -190,6 +190,6 @@ function roll(num) {
 
 $(document).ready(function() {
   assignStageLevels();
-  let stage = new Stage(regions.mycanidMeadows.stages.portobelloPrairie);
+  let stage = new Stage(regions.mycanidMeadows.stages.chanterelleCountryside);
   console.log(stage.hasBoss);
 });
