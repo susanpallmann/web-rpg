@@ -277,9 +277,9 @@ class Battle {
     let monsterLeveling = leveling.monsterLeveling
 
     // Generate base stats
-    let baseHealth = monsterLeveling.health.base + (level*monsterLeveling.health.perLevel);
-    let baseAttack = monsterLeveling.attack.base + (level*monsterLeveling.attack.perLevel);
-    let baseDefense = monsterLeveling.defense.base + (level*monsterLeveling.defense.perLevel);
+    let baseHealth = monsterLeveling.health.base + (this.level*monsterLeveling.health.perLevel);
+    let baseAttack = monsterLeveling.attack.base + (this.level*monsterLeveling.attack.perLevel);
+    let baseDefense = monsterLeveling.defense.base + (this.level*monsterLeveling.defense.perLevel);
 
     let bossType = this.bossTypes[Math.floor(Math.random() * this.bossTypes.length)];
     let attack = {};
