@@ -291,7 +291,7 @@ class Battle {
       defense[monsters[bossType].defense[j]] = baseDefense * monsters[bossType].relativeDifficulty * monsterLeveling.bossMultiplier;
     }
     let bossStats = {
-      type: monsterType,
+      type: bossType,
       health: baseHealth * monsters[bossType].relativeDifficulty * monsterLeveling.bossMultiplier,
       maxHealth: baseHealth * monsters[bossType].relativeDifficulty * monsterLeveling.bossMultiplier,
       attack: attack,
