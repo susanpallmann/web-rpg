@@ -135,9 +135,9 @@ class Entity {
   
   constructor(stats) {
     this.stats.health = stats.health;
-    this.stats.maxHealth: stats.maxHealth;
-    this.stats.attack: stats.attack;
-    this.stats.defense: stats.defense;
+    this.stats.maxHealth = stats.maxHealth;
+    this.stats.attack = stats.attack;
+    this.stats.defense = stats.defense;
   }
 
   modifyHealth(amount) {
