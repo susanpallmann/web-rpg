@@ -307,6 +307,7 @@ class Battle {
     let baseHealth = monsterLeveling.health.base + (this.level*monsterLeveling.health.perLevel);
     let baseAttack = monsterLeveling.attack.base + (this.level*monsterLeveling.attack.perLevel);
     let baseDefense = monsterLeveling.defense.base + (this.level*monsterLeveling.defense.perLevel);
+    console.log(baseDefense);
 
     for (let i = 0; i < numMonsters; i++) {
       let monsterType = i === 1 ? this.monsterTypes[0] : this.monsterTypes[1];
@@ -316,6 +317,8 @@ class Battle {
       }
       let defense = {};
       for (let defenseType in monsters[monsterType].defense) {
+        console.log(defenseType);
+        console.log(monsters[monsterType].defense[defenseType]);
         defense[defenseType] = baseDefense * monsters[monsterType].relativeDifficulty;
       }
       let monsterStats = {
