@@ -358,4 +358,5 @@ $(document).ready(function() {
   assignStageLevels();
   let stage = new Stage(regions.mycanidMeadows.stages.chanterelleCountryside);
   console.log(stage.hasBoss);
+  stage.createBattle();
 });
