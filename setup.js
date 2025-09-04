@@ -279,12 +279,12 @@ class Battle {
 
     let bossType = this.bossTypes[Math.floor(Math.random() * this.bossTypes.length)];
     let attack = {};
-    for (let attackType in monsters[bossType].attack) {
-      attack[monsters[monsterType].attack[attackType]] = baseAttack * monsters[bossType].relativeDifficulty * monsterLeveling.bossMultiplier;
+    for (let j = 0; j < monsters[monsterType].attack.length; j++) {
+      attack[monsters[monsterType].attack[j]] = baseAttack * monsters[bossType].relativeDifficulty * monsterLeveling.bossMultiplier;
     }
     let defense = {};
-    for (let defenseType in monsters[bossType].defense) {
-      defense[monsters[monsterType].defense[defenseType]] = baseDefense * monsters[bossType].relativeDifficulty * monsterLeveling.bossMultiplier;
+    for (let j = 0; j < monsters[monsterType].defense.length; j++) {
+      defense[monsters[monsterType].defense[j]] = baseDefense * monsters[bossType].relativeDifficulty * monsterLeveling.bossMultiplier;
     }
     let bossStats = {
       type: monsterType,
@@ -312,12 +312,12 @@ class Battle {
     for (let i = 0; i < numMonsters; i++) {
       let monsterType = i === 1 ? this.monsterTypes[0] : this.monsterTypes[1];
       let attack = {};
-      for (let attackType in monsters[monsterType].attack) {
-        attack[monsters[monsterType].attack[attackType]] = baseAttack * monsters[monsterType].relativeDifficulty;
+      for (let j = 0; j < monsters[monsterType].attack.length; j++) {
+        attack[monsters[monsterType].attack[j]] = baseAttack * monsters[monsterType].relativeDifficulty;
       }
       let defense = {};
-      for (let defenseType in monsters[monsterType].defense) {
-        defense[monsters[monsterType].defense[defenseType]] = baseDefense * monsters[monsterType].relativeDifficulty;
+      for (let j = 0; j < monsters[monsterType].defense.length; j++) {
+        defense[monsters[monsterType].defense[j]] = baseDefense * monsters[monsterType].relativeDifficulty;
       }
       let monsterStats = {
         type: monsterType,
