@@ -302,9 +302,9 @@ class Battle {
     let numMonsters = Math.floor(Math.random() * 3 - 1) + 1;
 
     // Generate base stats
-    let baseHealth = monsterLeveling.health.base + (level*monsterLeveling.health.perLevel);
-    let baseAttack = monsterLeveling.attack.base + (level*monsterLeveling.attack.perLevel);
-    let baseDefense = monsterLeveling.defense.base + (level*monsterLeveling.defense.perLevel);
+    let baseHealth = monsterLeveling.health.base + (this.level*monsterLeveling.health.perLevel);
+    let baseAttack = monsterLeveling.attack.base + (this.level*monsterLeveling.attack.perLevel);
+    let baseDefense = monsterLeveling.defense.base + (this.level*monsterLeveling.defense.perLevel);
 
     for (let i = 0; i < numMonsters; i++) {
       let monsterType = i === 1 ? this.monsterTypes[0] : this.monsterTypes[1];
