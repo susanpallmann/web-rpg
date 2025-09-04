@@ -293,7 +293,7 @@ class Battle {
       attack: attack,
       defense: defense,
     }
-    this.entities[`monster${i}`] = new Monster(monsterStats);
+    this.entities.monster = new Monster(bossStats);
     console.log(this.entities);
   }
   
@@ -325,7 +325,8 @@ class Battle {
         attack: attack,
         defense: defense,
       }
-      this.entities[`monster${i}`] = new Monster(monsterStats);
+      let monsterKey = 'monster' + i;
+      this.entities[monsterKey] = new Monster(monsterStats);
     }
     console.log(this.entities);
   }
