@@ -93,6 +93,7 @@ class Player extends Entity {
 class Monster extends Entity {
   constructor(stats) {
     super(stats);
+    this.stats.type = stats.type;
   }
 
   modifyHealth(amount) {
