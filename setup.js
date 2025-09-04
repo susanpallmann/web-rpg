@@ -301,7 +301,7 @@ class Battle {
     let monsterLeveling = leveling.monsterLeveling
     
     // Randomly choose how many monsters to generate
-    let numMonsters = Math.floor(Math.random() * 3 - 1) + 1;
+    let numMonsters = Math.floor(Math.random() * 3) + 1;
 
     // Generate base stats
     let baseHealth = monsterLeveling.health.base + (this.level*monsterLeveling.health.perLevel);
