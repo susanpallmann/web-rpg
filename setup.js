@@ -134,10 +134,12 @@ function assignStageLevels() {
 class Entity {
   
   constructor(stats) {
-    this.stats.health = stats.health;
-    this.stats.maxHealth = stats.maxHealth;
-    this.stats.attack = stats.attack;
-    this.stats.defense = stats.defense;
+    this.stats = {
+      health: stats.health,
+      maxHealth: stats.maxHealth,
+      attack: stats.attack,
+      defense: stats.defense
+    };
   }
 
   modifyHealth(amount) {
