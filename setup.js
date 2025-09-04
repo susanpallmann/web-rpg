@@ -278,11 +278,11 @@ class Battle {
     let bossType = this.bossTypes[Math.floor(Math.random() * this.bossTypes.length)];
     let attack = {};
     for (let attackType in monsters[bossType].attack) {
-      attack[attackType] = baseAttack * monsters[bossType].relativeDifficulty * monsterLeveling.bossMultiplier,
+      attack[attackType] = baseAttack * monsters[bossType].relativeDifficulty * monsterLeveling.bossMultiplier;
     }
     let defense = {};
     for (let defenseType in monsters[bossType].defense) {
-      defense[defenseType] = baseDefense * monsters[bossType].relativeDifficulty * monsterLeveling.bossMultiplier,
+      defense[defenseType] = baseDefense * monsters[bossType].relativeDifficulty * monsterLeveling.bossMultiplier;
     }
     let bossStats = {
       type: monsterType,
