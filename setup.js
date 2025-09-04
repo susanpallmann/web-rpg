@@ -131,6 +131,103 @@ function assignStageLevels() {
   console.log(regions);
 }
 
+class Entity {
+  
+  constructor(stats) {
+    this.stats.health = stats.health;
+    this.stats.maxHealth: stats.maxHealth;
+    this.stats.attack: stats.attack;
+    this.stats.defense: stats.defense;
+  }
+
+  modifyHealth(amount) {
+    if (this.stats.health + amount >= this.stats.maxHealth) {
+      this.stats.health = this.stats.maxHealth;
+    } else {
+      this.stats.health = this.stats.health + amount;
+    }
+  }
+  
+  attack() {
+    let attacks = [];
+    
+    for (let attack in this.stats.attack) {
+      attacks.push({
+        type: attack, 
+        amount: this.stats.attack[attack]
+      });
+    }
+    
+    return attacks;
+  }
+
+  defend(attack) {
+    let totalDefense = 0;
+    let damage;
+    
+    for (let defense in this.stats.defense) {
+      if (defense === attack.type) {
+        totalDefense = totalDefense + this.stats.defense[defense];
+      }
+    }
+
+    if (attack.amount - totalDefense <= 0) {
+      damage = 0;
+    } else {
+      damage = attack.amount - totalDefense;
+    }
+
+    return damage;
+  }
+}
+
+class Player extends Entity {
+  constructor(stats) {
+    super(stats);
+    this.stats.energy = stats.energy;
+    this.stats.energy = stats.maxEnergy;
+  }
+
+  modifyEnergy(amount) {
+    if (this.stats.energy + amount >= this.stats.maxEnergy) {
+      this.stats.energy = this.stats.maxEnergy;
+    } else {
+      this.stats.energy = this.stats.energy + amount;
+    }
+  }
+
+  modifyHealth(amount) {
+    super.modifyHealth();
+  }
+
+  attack() {
+    return super.attack();
+  }
+
+  defend(attack) {
+    return super.defend(attack);
+  }
+  
+}
+
+class Monster extends Entity {
+  constructor(stats) {
+    super(stats);
+    this.stats.type = stats.type;
+  }
+
+  modifyHealth(amount) {
+    super.modifyHealth();
+  }
+
+  attack() {
+    return super.attack();
+  }
+
+  defend(attack) {
+    return super.defend(attack);
+  }
+}
 
 class Stage {
   constructor(stage) {
@@ -140,26 +237,95 @@ class Stage {
     this.bosses = stage.bosses;
     this.hasBoss = stage.bosses.length > 0;
     this.numBattles = 0;
+    this.currentBattle;
   }
 
   createBattle() {
     // Determine if this is to be a boss battle
-    let isBossBattle = false;
-    if (this.hasBoss) {
-      isBossBattle = roll(battles.bossChance);
+    let monsterTypes = [];
+    let battleType = null;
+    if (this.hasBoss && roll(battles.bossChance)) {
+      battleType = 'boss';
+      monsterTypes.push(this.bosses[Math.floor(Math.random() * this.bosses.length)]);
+    } else {
+      battleType = 'monster';
+      monsterTypes.push(this.monsters[Math.floor(Math.random() * this.monsters.length)]);
+      monsterTypes.push(this.monsters[Math.floor(Math.random() * this.monsters.length)]);
     }
-    // Determine the monster types
+    this.currentBattle = new Battle(battleType, monsterTypes, this.level);
+    this.currentBattle.generateMonsters();
   }
 }
 
 class Battle {
-  constructor(battleType, monsterTypes) {
+  constructor(battleType, monsterTypes, level) {
+    this.level = level;
+    this.battleType = battleType;
+    this.monsterTypes = monsterTypes;
     this.turnInterval;
     this.numTurns = 0;
+    this.entities = {};
   }
+  
+  generateBoss() {
+    let monsterLeveling = leveling.monsterLeveling
 
+    // Generate base stats
+    let baseHealth = monsterLeveling.health.base + (level*monsterLeveling.health.perLevel);
+    let baseAttack = monsterLeveling.attack.base + (level*monsterLeveling.attack.perLevel);
+    let baseDefense = monsterLeveling.defense.base + (level*monsterLeveling.defense.perLevel);
+
+    let bossType = this.bossTypes[Math.floor(Math.random() * this.bossTypes.length)];
+    let attack = {};
+    for (let attackType in monsters[bossType].attack) {
+      attack[attackType] = baseAttack * monsters[bossType].relativeDifficulty * monsterLeveling.bossMultiplier,
+    }
+    let defense = {};
+    for (let defenseType in monsters[bossType].defense) {
+      defense[defenseType] = baseDefense * monsters[bossType].relativeDifficulty * monsterLeveling.bossMultiplier,
+    }
+    let bossStats = {
+      type: monsterType,
+      health: baseHealth * monsters[monsterType].relativeDifficulty * monsterLeveling.bossMultiplier,
+      maxHealth: baseHealth * monsters[monsterType].relativeDifficulty * monsterLeveling.bossMultiplier,
+      attack: attack,
+      defense: defense,
+    }
+    this.entities[`monster${i}`] = new Monster(monsterStats);
+    console.log(this.entities);
+  }
+  
   generateMonsters() {
+    let monsterLeveling = leveling.monsterLeveling
     
+    // Randomly choose how many monsters to generate
+    let numMonsters = Math.floor(Math.random() * 3 - 1) + 1;
+
+    // Generate base stats
+    let baseHealth = monsterLeveling.health.base + (level*monsterLeveling.health.perLevel);
+    let baseAttack = monsterLeveling.attack.base + (level*monsterLeveling.attack.perLevel);
+    let baseDefense = monsterLeveling.defense.base + (level*monsterLeveling.defense.perLevel);
+
+    for (let i = 0; i < numMonsters; i++) {
+      let monsterType = i === 1 ? this.monsterTypes[0] : this.monsterTypes[1];
+      let attack = {};
+      for (let attackType in monsters[monsterType].attack) {
+        attack[attackType] = baseAttack * monsters[monsterType].relativeDifficulty;
+      }
+      let defense = {};
+      for (let defenseType in monsters[monsterType].defense) {
+        defense[defenseType] = baseDefense * monsters[monsterType].relativeDifficulty;
+      }
+      let monsterStats = {
+        type: monsterType,
+        health: baseHealth * monsters[monsterType].relativeDifficulty,
+        maxHealth: baseHealth * monsters[monsterType].relativeDifficulty,
+        attack: attack,
+        defense: defense,
+      }
+      this.entities[`monster${i}`] = new Monster(monsterStats);
+    }
+    console.log(this.entities);
   }
   
   startBattle() {
