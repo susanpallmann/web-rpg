@@ -1,12 +1,12 @@
 {
-  rarities: {
+  'rarities': {
     1: 'Common',
     2: 'Uncommon',
     3: 'Rare',
     4: 'Epic',
     5: 'Legendary'
   },
-  leveling: {
+  'leveling': {
     maxLevel: 100,
     monsterLeveling: {
       health: {
