@@ -1,3 +1,5 @@
+import config from "./config.json" with { type: "json" };
+
 const rarities = {
   1: 'Common',
   2: 'Uncommon',
