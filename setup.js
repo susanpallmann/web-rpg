@@ -552,6 +552,6 @@ $(document).ready(function() {
   let stage = new Stage(hydratedConfig.regions.mycanidMeadows.stages.chanterelleCountryside);
   game.enterStage(stage);
   console.log(game);
-  console.log(game.stage.hasBoss);
-  console.log(game.stage.createBattle());
+  console.log(game.currentStage.hasBoss);
+  console.log(game.currentStage.createBattle());
 });
