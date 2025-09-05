@@ -1,6 +1,13 @@
 # web-rpg
 
 ## config.JSON
+### rarities
+### leveling
+### playerBaseStats
+### battles
+### regions
+### monsters
+### items (TODO)
 
 ## setup.js
 ### Classes
