@@ -312,7 +312,7 @@ class Player extends Entity {
 
   equipItem(item, targetSlot) {
     // Check if item is allowed to be in that slot
-    if (item.allowedSlots.includes(targetSlot) {
+    if (item.allowedSlots.includes(targetSlot)) {
 
       // If so, check if there is currently something in that slot
       let prevEquippedItem = {};
