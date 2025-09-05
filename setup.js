@@ -181,8 +181,8 @@ const battles = {
   bossChance: 0.05
 };
 
+
 class Entity {
-  
   constructor(stats) {
     this.stats = {
       health: stats.health,
@@ -232,7 +232,7 @@ class Entity {
     return damage;
   }
 }
-
+/*
 const playerBaseStats = {
   health: 25,
   maxHealth: 25,
@@ -245,11 +245,10 @@ const playerBaseStats = {
     basic: 0
   }
 };
-
-new Player(hydratedConfig.playerBaseStats, equipment, inventory, buffEffects);
+*/
 
 class Player extends Entity {
-  constructor(stats, playerBaseStats) {
+  constructor(stats, equipment, inventory, buffEffects) {
     super(stats);
     this.stats.energy = stats.energy;
     this.stats.maxEnergy = stats.maxEnergy;
