@@ -268,6 +268,7 @@ class Player extends Entity {
       attack: this.baseStats.attack,
       defense: this.baseStats.defense
     };
+    console.log(Object.keys(this.equipment).length);
     if (Object.keys(this.equipment).length > 0) {
       for (let equipment in this.equipment) {
         for (let stat in this.equipment[equipment].stats) {
