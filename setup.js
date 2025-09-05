@@ -246,28 +246,17 @@ const playerBaseStats = {
   }
 };
 
-
+new Player(hydratedConfig.playerBaseStats, equipment, inventory, buffEffects);
 
 class Player extends Entity {
   constructor(stats, playerBaseStats) {
     super(stats);
     this.stats.energy = stats.energy;
     this.stats.maxEnergy = stats.maxEnergy;
-    this.equipment = {
-      head: 'item',
-      torso: 'item',
-      legs: 'item',
-      feet: 'item',
-      mainHand: 'item',
-      offHand: 'item'
-    };
-    this.inventory = [
-      {}
-    ]
-    this.buffEffects = {
-      exampleBuff: 'buff',
-    };
-    this.baseStats = playerBaseStats;
+    this.equipment = equipment;
+    this.inventory = inventory;
+    this.buffEffects = buffEffects;
+    this.baseStats = stats;
     this.recalculateStats(false);
   }
 
@@ -504,6 +493,45 @@ class Battle {
   }
 };
 
+class Game {
+  constructor(player) {
+    this.player = player;
+    this.battleLog = {};
+    this.currentLocation = 'map';
+    this.currentStage = null;
+    this.currentTown = null;
+  }
+
+  appendLog(timestamp, type = 'default', message) {
+    this.battleLog[timestamp] = {
+      type: type,
+      message: message
+    };
+    console.log(type + ': ' + message);
+  }
+
+  enterStage(stage) {
+    this.player.recalculateStats(false);
+    this.currentStage = stage;
+    this.currentTown = null;
+    this.currentLocation = 'stage';
+  }
+
+  enterTown(town) {
+    this.currentTown = town;
+    this.currentStage = null;
+    this.currentLocation = 'town';
+  }
+
+  exit() {
+    this.player.recalculateStats(false);
+    this.currentStage = null;
+    this.currentTown = null;
+    this.currentLocation = 'map';
+  }
+};
+
+
 // Function to roll for an outcome given the chance (num) of that outcome
 // Returns true if outcome occurs, and false if not
 function roll(num) {
@@ -558,6 +586,13 @@ $(document).ready(function() {
   // Hydrate config file for use
   const hydratedConfig = hydrateConfig(config);
 
+  const equipment = { head: null, torso: null, legs: null, feet: null, mainHand: null, offHand: null };
+  const inventory = [];
+  const buffEffects = {};
+  let player = new Player(hydratedConfig.playerBaseStats, equipment, inventory, buffEffects);
+  let game = new Game(player);
+  console.log(game);
+  
   let stage = new Stage(hydratedConfig.regions.mycanidMeadows.stages.chanterelleCountryside);
   console.log(stage.hasBoss);
   stage.createBattle();
