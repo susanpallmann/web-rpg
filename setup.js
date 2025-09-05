@@ -1,13 +1,5 @@
 import config from "./config.json" with { type: "json" };
 
-const rarities = {
-  1: 'Common',
-  2: 'Uncommon',
-  3: 'Rare',
-  4: 'Epic',
-  5: 'Legendary'
-};
-
 // Sets the game's level-based constants and modifiers, including:
   // The game's maximum level
   // Monsters and bosses' base stats
@@ -30,46 +22,6 @@ const leveling = {
     bossMultiplier: 1.5
   }
 };
-
-// Sets the game's zone information, including:
-  // The game's regions and their attributes
-  // Each region's stages and their attributes
-const regions = {
-  mycanidMeadows: {
-    name: "Mycanid Meadows",
-    stages: {
-      portobelloPrairie: {
-        name: "Portobello Prairie",
-        level: 0, // Dynamically populated
-        monsters: ['mycanid'],
-        bosses: []
-      },
-      chanterelleCountryside: {
-        name: "Chanterelle Countryside",
-        level: 0, // Dynamically populated
-        monsters: ['mycanid'],
-        bosses: ['mushroomKing']
-      }
-    }
-  },
-  fernForest: {
-    name: "Fern Forest",
-    stages: {
-      plantPlateau: {
-        name: "Plant Plateau",
-        level: 0, // Dynamically populated
-        monsters: ['mycanid', 'spider'],
-        bosses: []
-      },
-      pothosPeak: {
-        name: "Pothos Peak",
-        level: 0, // Dynamically populated
-        monsters: ['mycanid', 'spider'],
-        bosses: ['queenSpider']
-      }
-    }
-  }
-}
 
 const monsters = {
   mycanid: {
@@ -374,8 +326,9 @@ class Monster extends Entity {
 }
 
 class Stage {
-  constructor(stage) {
+  constructor(stage, config) {
     this.stageName = stage.name;
+    this.config = config;
     this.level = stage.level;
     this.monsters = stage.monsters;
     this.bosses = stage.bosses;
@@ -388,7 +341,7 @@ class Stage {
     // Determine if this is to be a boss battle
     let monsterTypes = [];
     let battleType = null;
-    if (this.hasBoss && roll(battles.bossChance)) {
+    if (this.hasBoss && roll(this.config.battles.bossChance)) {
       battleType = 'boss';
       monsterTypes.push(this.bosses[Math.floor(Math.random() * this.bosses.length)]);
     } else {
@@ -396,7 +349,7 @@ class Stage {
       monsterTypes.push(this.monsters[Math.floor(Math.random() * this.monsters.length)]);
       monsterTypes.push(this.monsters[Math.floor(Math.random() * this.monsters.length)]);
     }
-    this.currentBattle = new Battle(battleType, monsterTypes, this.level);
+    this.currentBattle = new Battle(battleType, monsterTypes, this.level, this.config);
     if (this.currentBattle.battleType === 'boss') {
       this.currentBattle.generateBoss();
     } else {
@@ -406,8 +359,9 @@ class Stage {
 }
 
 class Battle {
-  constructor(battleType, monsterTypes, level) {
+  constructor(battleType, monsterTypes, level, config) {
     this.level = level;
+    this.config = config;
     this.battleType = battleType;
     this.monsterTypes = monsterTypes;
     this.turnInterval;
@@ -416,7 +370,7 @@ class Battle {
   }
   
   generateBoss() {
-    let monsterLeveling = leveling.monsterLeveling
+    let monsterLeveling = this.config.leveling.monsterLeveling
 
     // Generate base stats
     let baseHealth = monsterLeveling.health.base + (this.level*monsterLeveling.health.perLevel);
@@ -425,17 +379,17 @@ class Battle {
 
     let bossType = this.monsterTypes[Math.floor(Math.random() * this.monsterTypes.length)];
     let attack = {};
-    for (let j = 0; j < monsters[bossType].attack.length; j++) {
-      attack[monsters[bossType].attack[j]] = baseAttack * monsters[bossType].relativeDifficulty * monsterLeveling.bossMultiplier;
+    for (let j = 0; j < this.config.monsters[bossType].attack.length; j++) {
+      attack[this.config.monsters[bossType].attack[j]] = baseAttack * this.config.monsters[bossType].relativeDifficulty * monsterLeveling.bossMultiplier;
     }
     let defense = {};
-    for (let j = 0; j < monsters[bossType].defense.length; j++) {
-      defense[monsters[bossType].defense[j]] = baseDefense * monsters[bossType].relativeDifficulty * monsterLeveling.bossMultiplier;
+    for (let j = 0; j < this.config.monsters[bossType].defense.length; j++) {
+      defense[this.config.monsters[bossType].defense[j]] = baseDefense * this.config.monsters[bossType].relativeDifficulty * monsterLeveling.bossMultiplier;
     }
     let bossStats = {
       type: bossType,
-      health: baseHealth * monsters[bossType].relativeDifficulty * monsterLeveling.bossMultiplier,
-      maxHealth: baseHealth * monsters[bossType].relativeDifficulty * monsterLeveling.bossMultiplier,
+      health: baseHealth * this.config.monsters[bossType].relativeDifficulty * monsterLeveling.bossMultiplier,
+      maxHealth: baseHealth * this.config.monsters[bossType].relativeDifficulty * monsterLeveling.bossMultiplier,
       attack: attack,
       defense: defense,
     }
@@ -444,7 +398,7 @@ class Battle {
   }
   
   generateMonsters() {
-    let monsterLeveling = leveling.monsterLeveling
+    let monsterLeveling = this.config.leveling.monsterLeveling
     
     // Randomly choose how many monsters to generate
     let numMonsters = Math.floor(Math.random() * 3) + 1;
@@ -459,17 +413,17 @@ class Battle {
       let monsterType = i === 1 ? this.monsterTypes[0] : this.monsterTypes[1];
       let attack = {};
       console.log(monsterType);
-      for (let j = 0; j < monsters[monsterType].attack.length; j++) {
-        attack[monsters[monsterType].attack[j]] = baseAttack * monsters[monsterType].relativeDifficulty;
+      for (let j = 0; j < this.config.monsters[monsterType].attack.length; j++) {
+        attack[this.config.monsters[monsterType].attack[j]] = baseAttack * this.config.monsters[monsterType].relativeDifficulty;
       }
       let defense = {};
-      for (let j = 0; j < monsters[monsterType].defense.length; j++) {
-        defense[monsters[monsterType].defense[j]] = baseDefense * monsters[monsterType].relativeDifficulty;
+      for (let j = 0; j < this.config.monsters[monsterType].defense.length; j++) {
+        defense[this.config.monsters[monsterType].defense[j]] = baseDefense * this.config.monsters[monsterType].relativeDifficulty;
       }
       let monsterStats = {
         type: monsterType,
-        health: baseHealth * monsters[monsterType].relativeDifficulty,
-        maxHealth: baseHealth * monsters[monsterType].relativeDifficulty,
+        health: baseHealth * this.config.monsters[monsterType].relativeDifficulty,
+        maxHealth: baseHealth * this.config.monsters[monsterType].relativeDifficulty,
         attack: attack,
         defense: defense,
       }
@@ -495,8 +449,9 @@ class Battle {
 };
 
 class Game {
-  constructor(player) {
+  constructor(player, config) {
     this.player = player;
+    this.config = config;
     this.battleLog = {};
     this.currentLocation = 'map';
     this.currentStage = null;
@@ -591,7 +546,7 @@ $(document).ready(function() {
   const inventory = [];
   const buffEffects = {};
   let player = new Player(hydratedConfig.playerBaseStats, equipment, inventory, buffEffects);
-  let game = new Game(player);
+  let game = new Game(player, hydratedConfig);
   console.log(game);
 
   let stage = new Stage(hydratedConfig.regions.mycanidMeadows.stages.chanterelleCountryside);
