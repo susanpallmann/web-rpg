@@ -1,11 +1,11 @@
-rarities = {
+rarities: {
   1: 'Common',
   2: 'Uncommon',
   3: 'Rare',
   4: 'Epic',
   5: 'Legendary'
 },
-leveling = {
+leveling: {
   maxLevel: 100,
   monsterLeveling: {
     health: {
@@ -23,7 +23,7 @@ leveling = {
     bossMultiplier: 1.5
   }
 },
-const playerBaseStats = {
+playerBaseStats: {
   health: 25,
   maxHealth: 25,
   energy: 25,
@@ -35,13 +35,13 @@ const playerBaseStats = {
     basic: 0
   }
 },
-battles = {
+battles: {
   // Length of automatic turns during battles, in milliseconds
   turnSpeed: 2000,
   // Chance of generating a boss encounter in stages with bosses (should be less than 1)
   bossChance: 0.05
 },
-regions = {
+regions: {
   mycanidMeadows: {
     name: "Mycanid Meadows",
     stages: {
@@ -77,7 +77,7 @@ regions = {
     }
   }
 },
-monsters = {
+monsters: {
   mycanid: {
     name: "Mycanid",
     appearance: 'mycanid',
@@ -107,4 +107,4 @@ monsters = {
     attack: ['basic'],
     defense: ['basic']
   }
-},
+}
