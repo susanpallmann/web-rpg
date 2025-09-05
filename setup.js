@@ -1,3 +1,11 @@
+const rarities = {
+  1: 'Common',
+  2: 'Uncommon',
+  3: 'Rare',
+  4: 'Epic',
+  5: 'Legendary'
+};
+
 // Sets the game's level-based constants and modifiers, including:
   // The game's maximum level
   // Monsters and bosses' base stats
@@ -93,17 +101,75 @@ const monsters = {
   }
 };
 
-const items = {
-  item: {
-    name: "Item Name",
-    appearance: null,
-    slot: null, //head, torso, legs, feet
-    stat: null,
-    type: null,
-    amount: null,
-    trigger: null,
+const exampleTriggeredEffect = new triggeredEffect('onAttack', 3, 0, ['attack', 'basic', '2', 'player']);
+const exampleItemAttributes = {
+  id: 1,
+  name: 'Basic Sword',
+  description: 'lorem ipsum dolor etc.',
+  rarity: 1,
+  type: 'sword',
+  appearance: 'basicSword',
+  allowedSlots: ['mainHand', 'offHand'],
+  stats: {
+    health: 0,
+    maxHealth: 0,
+    energy: 0,
+    maxEnergy: 0,
+    attack: {
+      basic: 0
+    },
+    defense: {
+      basic: 0
+    }
+  },
+  effects: {
+    1: exampleTriggeredEffect,
   }
 };
+
+class Item = {
+  constructor(attributes) {
+    this.id = attributes.id;
+    this.name = attributes.name;
+    this.description = attributes.description;
+    this.rarity = attributes.rarity;
+    this.type = attributes.type;
+    this.appearance = attributes.appearance;
+    this.allowedSlots = attributes.allowedSlots;
+    this.stats = attributes.stats;
+    this.effects = attributes.effects;
+  }
+};
+
+class triggeredEffect {
+  constructor(trigger, cooldown, initialOffset, effect) {
+    this.trigger = trigger;
+    this.cooldown = cooldown;
+    this.triggersElapsed = cooldown - initialOffset;
+    this.effect = effect;
+  }
+
+  getCooldownStatus() {
+    return this.triggersElapsed === this.cooldown;
+  }
+  
+  incrementCooldown() {
+    if (this.triggersElapsed < this.cooldown) {
+      this.triggersElapsed++;
+    } else {
+      this.triggersElapsed = 0;
+    }
+  }
+  
+}
+
+const triggers = [
+  "turnStart",
+  "onAttack",
+  "onDefend",
+  "onOpponentDeath",
+  "turnEnd"
+];
 
 // Sets constants to control battle gameplay
 const battles = {
@@ -195,13 +261,115 @@ class Entity {
   }
 }
 
+const playerBaseStats = {
+  health: 25,
+  maxHealth: 25,
+  energy: 25,
+  maxEnergy: 25,
+  attack: {
+    basic: 0
+  },
+  defense: {
+    basic: 0
+  }
+};
+
+
+
 class Player extends Entity {
-  constructor(stats) {
+  constructor(stats, playerBaseStats) {
     super(stats);
     this.stats.energy = stats.energy;
-    this.stats.energy = stats.maxEnergy;
+    this.stats.maxEnergy = stats.maxEnergy;
+    this.equipment = {
+      head: 'item',
+      torso: 'item',
+      legs: 'item',
+      feet: 'item',
+      mainHand: 'item',
+      offHand: 'item'
+    };
+    this.inventory = [
+      {}
+    ]
+    this.buffEffects = {
+      exampleBuff: 'buff',
+    };
+    this.baseStats = playerBaseStats;
+    this.recalculateStats(false);
   }
 
+  recalculateStats(preserveAmounts) {
+    let newStats = {
+      health: this.baseStats.health,
+      maxHealth: this.baseStats.maxHealth,
+      energy: this.baseStats.energy,
+      maxEnergy: this.baseStats.maxEnergy,
+      attack: this.baseStats.attack,
+      defense: this.baseStats.defense
+    };
+    
+    for (let equipment in this.equipment) {
+      for (let stat in this.equipment[equipment].stats) {
+        if (stat !== 'defense' || stat !== 'attack') {
+          newStats[stat] = newStats[stat] + this.equipment[equipment].stats[stat];
+        } else {
+          for (let attackDefenseType in this.equipment[equipment].stats[stat]) {
+            newStats[stat][attackDefenseType] = newStats[stat][attackDefenseType] + this.equipment[equipment].stats[stat][attackDefenseType];
+          }
+        }
+      }
+    }
+    for (let buff in this.buffEffects) {
+      for (let stat in this.buffEffects[buff].stats) {
+        if (stat !== 'defense' || stat !== 'attack') {
+          newStats[stat] = newStats[stat] + this.buffEffects[buff].stats[stat];
+        } else {
+          for (let attackDefenseType in this.buffEffects[buff].stats[stat]) {
+            newStats[stat][attackDefenseType] = newStats[stat][attackDefenseType] + this.buffEffects[buff].stats[stat][attackDefenseType];
+          }
+        }
+      }
+    }
+    if (preserveAmounts) {
+      newStats.health = this.stats.health;
+      newStats.energy = this.stats.energy;
+    }
+    this.stats = newStats;
+  }
+
+  equipItem(item, targetSlot) {
+    // Check if item is allowed to be in that slot
+    if (item.allowedSlots.includes(targetSlot) {
+
+      // If so, check if there is currently something in that slot
+      let prevEquippedItem = {};
+      if (this.equipment[targetSlot] !== null) {
+        
+        // If so, put this item in the inventory
+        prevEquippedItem = this.equipment[targetSlot];
+        this.equipment[targetSlot] = null;
+        this.inventory.push(prevEquippedItem);
+      }
+
+      // Equip the new item to the desired slot
+      let newItemIndex = this.inventory.findIndex(invItem => invItem.id === item.id);
+      let newItem = this.inventory[newItemIndex];
+      this.inventory.splice(newItemIndex, 1);
+      this.equipment[targetSlot] = newItem;
+    
+    } else {
+      // If not, do not equip the item
+      // Probably a message to be added or something
+    }
+  }
+
+  unequipItem(targetSlot) {
+    let prevEquippedItem = this.equipment[targetSlot];
+    this.equipment[targetSlot] = null;
+    this.inventory.push(prevEquippedItem);
+  }
+  
   modifyEnergy(amount) {
     if (this.stats.energy + amount >= this.stats.maxEnergy) {
       this.stats.energy = this.stats.maxEnergy;
