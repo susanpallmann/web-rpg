@@ -10,11 +10,11 @@
     "maxLevel": 100,
     "monsterLeveling": {
       "health": {
-        "base": 20,
+        "basic": 20,
         "perLevel": 1
       },
       "attack": {
-        "base": 4,
+        "basic": 4,
         "perLevel": 1
       },
       "defense": {
