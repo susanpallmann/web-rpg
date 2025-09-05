@@ -103,32 +103,6 @@ const monsters = {
   }
 };
 
-const exampleTriggeredEffect = new TriggeredEffect('onAttack', 3, 0, ['attack', 'basic', '2', 'player']);
-const exampleItemAttributes = {
-  id: 1,
-  name: 'Basic Sword',
-  description: 'lorem ipsum dolor etc.',
-  rarity: 1,
-  type: 'sword',
-  appearance: 'basicSword',
-  allowedSlots: ['mainHand', 'offHand'],
-  stats: {
-    health: 0,
-    maxHealth: 0,
-    energy: 0,
-    maxEnergy: 0,
-    attack: {
-      basic: 0
-    },
-    defense: {
-      basic: 0
-    }
-  },
-  effects: {
-    1: exampleTriggeredEffect,
-  }
-};
-
 class Item {
   constructor(attributes) {
     this.id = attributes.id;
@@ -164,6 +138,32 @@ class TriggeredEffect {
   }
   
 }
+
+const exampleTriggeredEffect = new TriggeredEffect('onAttack', 3, 0, ['attack', 'basic', '2', 'player']);
+const exampleItemAttributes = {
+  id: 1,
+  name: 'Basic Sword',
+  description: 'lorem ipsum dolor etc.',
+  rarity: 1,
+  type: 'sword',
+  appearance: 'basicSword',
+  allowedSlots: ['mainHand', 'offHand'],
+  stats: {
+    health: 0,
+    maxHealth: 0,
+    energy: 0,
+    maxEnergy: 0,
+    attack: {
+      basic: 0
+    },
+    defense: {
+      basic: 0
+    }
+  },
+  effects: {
+    1: exampleTriggeredEffect,
+  }
+};
 
 const triggers = [
   "turnStart",
