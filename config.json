@@ -1,112 +1,139 @@
 {
-  'rarities': {
-    1: 'Common',
-    2: 'Uncommon',
-    3: 'Rare',
-    4: 'Epic',
-    5: 'Legendary'
+  "rarities": {
+    "1": "Common",
+    "2": "Uncommon",
+    "3": "Rare",
+    "4": "Epic",
+    "5": "Legendary"
   },
-  'leveling': {
-    maxLevel: 100,
-    monsterLeveling: {
-      health: {
-        base: 20,
-        perLevel: 1,
+  "leveling": {
+    "maxLevel": 100,
+    "monsterLeveling": {
+      "health": {
+        "base": 20,
+        "perLevel": 1
       },
-      attack: {
-        base: 4,
-        perLevel: 1,
+      "attack": {
+        "base": 4,
+        "perLevel": 1
       },
-      defense: {
-        base: 0,
-        perLevel: 1,
+      "defense": {
+        "base": 0,
+        "perLevel": 1
       },
-      bossMultiplier: 1.5
+      "bossMultiplier": 1.5
     }
   },
-  playerBaseStats: {
-    health: 25,
-    maxHealth: 25,
-    energy: 25,
-    maxEnergy: 25,
-    attack: {
-      basic: 0
+  "playerBaseStats": {
+    "health": 25,
+    "maxHealth": 25,
+    "energy": 25,
+    "maxEnergy": 25,
+    "attack": {
+      "basic": 0
     },
-    defense: {
-      basic: 0
+    "defense": {
+      "basic": 0
     }
   },
-  battles: {
-    // Length of automatic turns during battles, in milliseconds
-    turnSpeed: 2000,
-    // Chance of generating a boss encounter in stages with bosses (should be less than 1)
-    bossChance: 0.05
+  "battles": {
+    "turnSpeed": 2000,
+    "bossChance": 0.05
   },
-  regions: {
-    mycanidMeadows: {
-      name: "Mycanid Meadows",
-      stages: {
-        portobelloPrairie: {
-          name: "Portobello Prairie",
-          level: 0, // Dynamically populated
-          monsters: ['mycanid'],
-          bosses: []
+  "regions": {
+    "mycanidMeadows": {
+      "name": "Mycanid Meadows",
+      "stages": {
+        "portobelloPrairie": {
+          "name": "Portobello Prairie",
+          "level": 0,
+          "monsters": [
+            "mycanid"
+          ],
+          "bosses": []
         },
-        chanterelleCountryside: {
-          name: "Chanterelle Countryside",
-          level: 0, // Dynamically populated
-          monsters: ['mycanid'],
-          bosses: ['mushroomKing']
+        "chanterelleCountryside": {
+          "name": "Chanterelle Countryside",
+          "level": 0,
+          "monsters": [
+            "mycanid"
+          ],
+          "bosses": [
+            "mushroomKing"
+          ]
         }
       }
     },
-    fernForest: {
-      name: "Fern Forest",
-      stages: {
-        plantPlateau: {
-          name: "Plant Plateau",
-          level: 0, // Dynamically populated
-          monsters: ['mycanid', 'spider'],
-          bosses: []
+    "fernForest": {
+      "name": "Fern Forest",
+      "stages": {
+        "plantPlateau": {
+          "name": "Plant Plateau",
+          "level": 0,
+          "monsters": [
+            "mycanid",
+            "spider"
+          ],
+          "bosses": []
         },
-        pothosPeak: {
-          name: "Pothos Peak",
-          level: 0, // Dynamically populated
-          monsters: ['mycanid', 'spider'],
-          bosses: ['queenSpider']
+        "pothosPeak": {
+          "name": "Pothos Peak",
+          "level": 0,
+          "monsters": [
+            "mycanid",
+            "spider"
+          ],
+          "bosses": [
+            "queenSpider"
+          ]
         }
       }
     }
   },
-  monsters: {
-    mycanid: {
-      name: "Mycanid",
-      appearance: 'mycanid',
-      relativeDifficulty: 1,
-      attack: ['basic'],
-      defense: ['basic']
+  "monsters": {
+    "mycanid": {
+      "name": "Mycanid",
+      "appearance": "mycanid",
+      "relativeDifficulty": 1,
+      "attack": [
+        "basic"
+      ],
+      "defense": [
+        "basic"
+      ]
     },
-    spider: {
-      name: "Spider",
-      appearance: 'spider',
-      relativeDifficulty: 1,
-      attack: ['basic'],
-      defense: ['basic']
+    "spider": {
+      "name": "Spider",
+      "appearance": "spider",
+      "relativeDifficulty": 1,
+      "attack": [
+        "basic"
+      ],
+      "defense": [
+        "basic"
+      ]
     },
-    // Bosses
-    mushroomKing: {
-      name: "Mushroom King",
-      appearance: 'mushroomKing',
-      relativeDifficulty: 1,
-      attack: ['basic'],
-      defense: ['basic']
+    "mushroomKing": {
+      "name": "Mushroom King",
+      "appearance": "mushroomKing",
+      "relativeDifficulty": 1,
+      "attack": [
+        "basic"
+      ],
+      "defense": [
+        "basic"
+      ]
     },
-    queenSpider: {
-      name: "Queen Spider",
-      appearance: 'queenSpider',
-      relativeDifficulty: 1,
-      attack: ['basic'],
-      defense: ['basic']
+    "queenSpider": {
+      "name": "Queen Spider",
+      "appearance": "queenSpider",
+      "relativeDifficulty": 1,
+      "attack": [
+        "basic"
+      ],
+      "defense": [
+        "basic"
+      ]
     }
   }
 }
