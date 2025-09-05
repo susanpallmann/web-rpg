@@ -268,29 +268,27 @@ class Player extends Entity {
       attack: this.baseStats.attack,
       defense: this.baseStats.defense
     };
-    console.log(Object.keys(this.equipment).length);
-    if (Object.keys(this.equipment).length > 0) {
-      for (let equipment in this.equipment) {
-        for (let stat in this.equipment[equipment].stats) {
-          if (stat !== 'defense' || stat !== 'attack') {
-            newStats[stat] = newStats[stat] + this.equipment[equipment].stats[stat];
-          } else {
-            for (let attackDefenseType in this.equipment[equipment].stats[stat]) {
-              newStats[stat][attackDefenseType] = newStats[stat][attackDefenseType] + this.equipment[equipment].stats[stat][attackDefenseType];
-            }
+    for (let equipment in this.equipment) {
+      if (this.equipment[equipment] === null) {
+        continue;
+      }
+      for (let stat in this.equipment[equipment].stats) {
+        if (stat !== 'defense' || stat !== 'attack') {
+          newStats[stat] = newStats[stat] + this.equipment[equipment].stats[stat];
+        } else {
+          for (let attackDefenseType in this.equipment[equipment].stats[stat]) {
+            newStats[stat][attackDefenseType] = newStats[stat][attackDefenseType] + this.equipment[equipment].stats[stat][attackDefenseType];
           }
         }
       }
     }
-    if (Object.keys(this.buffEffects).length > 0) {
-      for (let buff in this.buffEffects) {
-        for (let stat in this.buffEffects[buff].stats) {
-          if (stat !== 'defense' || stat !== 'attack') {
-            newStats[stat] = newStats[stat] + this.buffEffects[buff].stats[stat];
-          } else {
-            for (let attackDefenseType in this.buffEffects[buff].stats[stat]) {
-              newStats[stat][attackDefenseType] = newStats[stat][attackDefenseType] + this.buffEffects[buff].stats[stat][attackDefenseType];
-            }
+    for (let buff in this.buffEffects) {
+      for (let stat in this.buffEffects[buff].stats) {
+        if (stat !== 'defense' || stat !== 'attack') {
+          newStats[stat] = newStats[stat] + this.buffEffects[buff].stats[stat];
+        } else {
+          for (let attackDefenseType in this.buffEffects[buff].stats[stat]) {
+            newStats[stat][attackDefenseType] = newStats[stat][attackDefenseType] + this.buffEffects[buff].stats[stat][attackDefenseType];
           }
         }
       }
