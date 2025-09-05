@@ -593,8 +593,10 @@ $(document).ready(function() {
   let player = new Player(hydratedConfig.playerBaseStats, equipment, inventory, buffEffects);
   let game = new Game(player);
   console.log(game);
-  
+
   let stage = new Stage(hydratedConfig.regions.mycanidMeadows.stages.chanterelleCountryside);
-  console.log(stage.hasBoss);
-  stage.createBattle();
+  game.enterStage(stage);
+  console.log(game);
+  console.log(game.stage.hasBoss);
+  console.log(game.stage.createBattle());
 });
