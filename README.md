@@ -4,6 +4,8 @@
 
 ## setup.js
 ### Classes
+#### App
+#### Game
 #### Stage
 #### Battle
 #### Entity
