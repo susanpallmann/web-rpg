@@ -181,36 +181,6 @@ const battles = {
   bossChance: 0.05
 };
 
-// Function to assign levels ranges and levels to regions and stages based on the maxLevel constant
-function assignStageLevels() {
-
-  // Get the total number of stages across all regions
-  let numStages = 0;
-  for (let region in regions) {
-    numStages = numStages + Object.keys(regions[region].stages).length;
-  }
-
-  // Determine the level difference between each stage, rounded to the nearest integer
-  // If the maxLevel is 100 and there are 20 stages, each stage will be ~5 levels apart
-  const levelDifference = Math.round(leveling.maxLevel/(numStages - 1));
-
-  // Loop through each region and each stage in that region
-  let stagesAssigned = 0;
-  for (let region in regions) {
-    for (let stage in regions[region].stages) {
-
-      // Calculate the level
-      // If this is the last stage to be assigned, the level should be set to the maxLevel from the leveling constant
-      let level = stagesAssigned === numStages - 1 ? leveling.maxLevel : (stagesAssigned*levelDifference) + 1;
-
-      // Assign this stage the calculated level
-      regions[region].stages[stage].level = level;
-      stagesAssigned++;
-    }
-  }
-  console.log(regions);
-}
-
 class Entity {
   
   constructor(stats) {
@@ -545,9 +515,50 @@ function roll(num) {
   }
 }
 
+// Function to assign levels ranges and levels to regions and stages based on the maxLevel constant
+function assignStageLevels(regionsConfig) {
+  let hydratedRegions = regionsConfig;
+  
+  // Get the total number of stages across all regions
+  let numStages = 0;
+  for (let region in regionsConfig) {
+    numStages = numStages + Object.keys(regionsConfig[region].stages).length;
+  }
+
+  // Determine the level difference between each stage, rounded to the nearest integer
+  // If the maxLevel is 100 and there are 20 stages, each stage will be ~5 levels apart
+  const levelDifference = Math.round(leveling.maxLevel/(numStages - 1));
+
+  // Loop through each region and each stage in that region
+  let stagesAssigned = 0;
+  for (let region in regionsConfig) {
+    for (let stage in regionsConfig[region].stages) {
+
+      // Calculate the level
+      // If this is the last stage to be assigned, the level should be set to the maxLevel from the leveling constant
+      let level = stagesAssigned === numStages - 1 ? leveling.maxLevel : (stagesAssigned*levelDifference) + 1;
+
+      // Assign this stage the calculated level
+      hydratedRegions[region].stages[stage].level = level;
+      stagesAssigned++;
+    }
+  }
+  console.log(regions);
+  return hydratedRegions;
+}
+
+function hydrateConfig(config) {
+  let newConfig = config;
+  newConfig.regions = assignStageLevels(config.regions);
+  return newConfig;
+}
+
+
 $(document).ready(function() {
-  assignStageLevels();
-  let stage = new Stage(regions.mycanidMeadows.stages.chanterelleCountryside);
+  // Hydrate config file for use
+  const hydratedConfig = hydrateConfig(config);
+
+  let stage = new Stage(hydratedConfig.regions.mycanidMeadows.stages.chanterelleCountryside);
   console.log(stage.hasBoss);
   stage.createBattle();
 });
