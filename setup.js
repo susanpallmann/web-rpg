@@ -103,7 +103,7 @@ const monsters = {
   }
 };
 
-const exampleTriggeredEffect = new triggeredEffect('onAttack', 3, 0, ['attack', 'basic', '2', 'player']);
+const exampleTriggeredEffect = new TriggeredEffect('onAttack', 3, 0, ['attack', 'basic', '2', 'player']);
 const exampleItemAttributes = {
   id: 1,
   name: 'Basic Sword',
