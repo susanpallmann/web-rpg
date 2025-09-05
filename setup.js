@@ -143,7 +143,7 @@ class Item {
   }
 };
 
-class triggeredEffect {
+class TriggeredEffect {
   constructor(trigger, cooldown, initialOffset, effect) {
     this.trigger = trigger;
     this.cooldown = cooldown;
