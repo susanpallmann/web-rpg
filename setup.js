@@ -527,7 +527,6 @@ function assignStageLevels(regionsConfig) {
       stagesAssigned++;
     }
   }
-  console.log(regions);
   return hydratedRegions;
 }
 
