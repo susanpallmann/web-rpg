@@ -129,7 +129,7 @@ const exampleItemAttributes = {
   }
 };
 
-class Item = {
+class Item {
   constructor(attributes) {
     this.id = attributes.id;
     this.name = attributes.name;
